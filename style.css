@@ -1275,7 +1275,7 @@ section {
    RESPONSIVE — MOBILE (≤ 768px)
    ============================================================ */
 @media (max-width: 768px) {
-  :root { --section-pad: 80px; }
+  :root { --navbar-height: 72px; }
 
   .container { padding: 0 24px; }
   .nav-container { padding: 0 24px; }
