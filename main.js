@@ -159,34 +159,84 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ============================================================
-  // 11. CONTACT FORM
-  // ============================================================
-  const form     = document.getElementById('contact-form');
-  const feedback = document.getElementById('form-feedback');
+// 11. CONTACT FORM
+// ============================================================
+const form = document.getElementById('contact-form');
+const feedback = document.getElementById('form-feedback');
 
-  if (form) {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = form.name.value.trim(), email = form.email.value.trim(), message = form.message.value.trim();
-      if (!name) { showFeedback('Please enter your name.', 'error'); return; }
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showFeedback('Please enter a valid email address.', 'error'); return; }
-      if (message.length < 10) { showFeedback('Message must be at least 10 characters.', 'error'); return; }
-      const btn = form.querySelector('.form-submit');
-      btn.disabled = true; btn.textContent = 'Sending...';
-      setTimeout(() => {
-        form.reset(); btn.disabled = false;
-        btn.innerHTML = `Send Message <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>`;
+if (form) {
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const message = form.message.value.trim();
+
+    // Validation
+    if (!name) {
+      showFeedback('Please enter your name.', 'error');
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      showFeedback('Please enter a valid email address.', 'error');
+      return;
+    }
+    if (message.length < 10) {
+      showFeedback('Message must be at least 10 characters.', 'error');
+      return;
+    }
+    const btn = form.querySelector('.form-submit');
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    try {
+      const response = await fetch('https://formspree.io/f/xlgvgygw', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          message
+        }),
+      });
+      if (response.ok) {
+        form.reset();
+        btn.disabled = false;
+        btn.innerHTML = `
+          Send Message
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="22" y1="2" x2="11" y2="13"/>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+          </svg>
+        `;
         showFeedback("// Message sent. I'll get back to you soon.", 'success');
-      }, 1200);
-    });
-  }
-  function showFeedback(msg, type) {
-    if (!feedback) return;
-    feedback.textContent = msg;
-    feedback.style.color = type === 'success' ? 'var(--text-muted)' : 'var(--text-dim)';
-    setTimeout(() => { feedback.textContent = ''; }, 5000);
-  }
+      } else {
+        btn.disabled = false;
+        btn.textContent = 'Send Message';
+        showFeedback('Something went wrong. Please try again.', 'error');
+      }
+    } catch (error) {
 
+      btn.disabled = false;
+      btn.textContent = 'Send Message';
+
+      showFeedback('Network error. Please try again later.', 'error');
+    }
+  });
+}
+
+function showFeedback(msg, type) {
+  if (!feedback) return;
+  feedback.textContent = msg;
+  feedback.style.color =
+    type === 'success'
+      ? 'var(--text-muted)'
+      : 'var(--text-dim)';
+  setTimeout(() => {
+    feedback.textContent = '';
+  }, 5000);
+}
 
   // ============================================================
   // 12. ACTIVE NAV LINK
