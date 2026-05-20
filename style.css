@@ -373,8 +373,8 @@ section {
 
 .hero-name {
   font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 600;
+  font-size: clamp(3rem, 10vw, 6rem);
   line-height: 0.95;
   letter-spacing: -0.05em;
   margin-bottom: 32px;
