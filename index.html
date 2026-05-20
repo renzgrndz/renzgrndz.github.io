@@ -40,13 +40,14 @@
   <nav id="navbar" role="navigation" aria-label="Main navigation">
     <div class="nav-container">
       <a href="#hero" class="nav-logo" aria-label="Home">
-        <span class="logo-bracket">{</span>YN<span class="logo-bracket">}</span>
+        <span class="logo-bracket">{</span>RENZ GRANADOZO<span class="logo-bracket">}</span>
       </a>
 
       <ul class="nav-links" id="nav-links" role="list">
         <li><a href="#about" class="nav-link">About</a></li>
         <li><a href="#skills" class="nav-link">Skills</a></li>
         <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#certificates" class="nav-link">Certificates</a></li>
         <li><a href="#experience" class="nav-link">Experience</a></li>
         <li><a href="#contact" class="nav-link">Contact</a></li>
       </ul>
@@ -62,10 +63,10 @@
     <div class="hero-bg-grid" aria-hidden="true"></div>
     <div class="hero-content">
       <p class="hero-pre" aria-hidden="true"><span class="mono">// hello, world</span></p>
-      <h2 class="hero-name">
+      <h3 class="hero-name">
         <span class="name-line" data-text="Your">Renz</span>
         <span class="name-line accent-line" data-text="Name.">Granadozo</span>
-      </h2>
+      </h3>
       <div class="hero-tagline">
         <span class="mono tagline-prefix">role:</span>
         <span id="typed-text" aria-live="polite"></span><span class="cursor-blink" aria-hidden="true">|</span>
@@ -231,6 +232,133 @@
   </section>
 
   <!-- ===================== PROJECTS ===================== -->
+  <section id="projects" aria-label="Projects section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="mono section-num">03.</span>
+        <h2>Projects</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="filter-bar reveal" role="group" aria-label="Filter projects">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="aws">AWS</button>
+        <button class="filter-btn" data-filter="databricks">Databricks</button>
+        <button class="filter-btn" data-filter="snowflake">Snowflake</button>
+        <button class="filter-btn" data-filter="orchestration">Orchestration</button>
+      </div>
+
+      <div class="projects-grid" id="projects-grid">
+
+        <!-- Project 1 -->
+        <article class="project-card reveal" data-category="aws" role="article">
+          <div class="project-top">
+            <div class="project-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <div class="project-links">
+              <a href="#" class="icon-link" aria-label="GitHub repository" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+              </a>
+              <a href="#" class="icon-link" aria-label="Live demo" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </div>
+          </div>
+          <h3 class="project-title">YouTube Data Engineering Pipeline</h3>
+          <p class="project-desc">End-to-end AWS data pipeline ingesting YouTube trending data via API, processing with Glue &amp; Lambda, and serving analytics through Athena and QuickSight dashboards.</p>
+          <div class="project-tags" role="list">
+            <span class="tag" role="listitem">AWS S3</span>
+            <span class="tag" role="listitem">AWS Glue</span>
+            <span class="tag" role="listitem">Lambda</span>
+            <span class="tag" role="listitem">Athena</span>
+            <span class="tag" role="listitem">Python</span>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="project-card reveal" data-category="databricks" role="article">
+          <div class="project-top">
+            <div class="project-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            </div>
+            <div class="project-links">
+              <a href="#" class="icon-link" aria-label="GitHub repository" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+              </a>
+              <a href="#" class="icon-link" aria-label="Live demo" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </div>
+          </div>
+          <h3 class="project-title">Databricks FMCG ETL Pipeline</h3>
+          <p class="project-desc">Medallion architecture (Bronze → Silver → Gold) for FMCG retail data. Built with PySpark on Databricks, Delta Lake for ACID compliance, and dbt for transformations.</p>
+          <div class="project-tags" role="list">
+            <span class="tag" role="listitem">Databricks</span>
+            <span class="tag" role="listitem">PySpark</span>
+            <span class="tag" role="listitem">Delta Lake</span>
+            <span class="tag" role="listitem">dbt</span>
+            <span class="tag" role="listitem">SQL</span>
+          </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="project-card reveal" data-category="snowflake" role="article">
+          <div class="project-top">
+            <div class="project-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><line x1="12" y1="2" x2="12" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <div class="project-links">
+              <a href="#" class="icon-link" aria-label="GitHub repository" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+              </a>
+              <a href="#" class="icon-link" aria-label="Live demo" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </div>
+          </div>
+          <h3 class="project-title">Snowflake Banking Analytics Platform</h3>
+          <p class="project-desc">Cloud data warehouse solution for banking analytics. Features multi-cluster Snowflake setup, Streams &amp; Tasks for CDC, and role-based access control for compliance.</p>
+          <div class="project-tags" role="list">
+            <span class="tag" role="listitem">Snowflake</span>
+            <span class="tag" role="listitem">SQL</span>
+            <span class="tag" role="listitem">Python</span>
+            <span class="tag" role="listitem">CDC</span>
+            <span class="tag" role="listitem">AWS S3</span>
+          </div>
+        </article>
+
+        <!-- Project 4 -->
+        <article class="project-card reveal" data-category="orchestration" role="article">
+          <div class="project-top">
+            <div class="project-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div class="project-links">
+              <a href="#" class="icon-link" aria-label="GitHub repository" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+              </a>
+              <a href="#" class="icon-link" aria-label="Live demo" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </div>
+          </div>
+          <h3 class="project-title">Airflow ETL Orchestration Project</h3>
+          <p class="project-desc">Production-grade DAG orchestration with Apache Airflow on Docker. Custom operators, SLA monitoring, Slack alerting, and multi-environment deployment pipeline.</p>
+          <div class="project-tags" role="list">
+            <span class="tag" role="listitem">Airflow</span>
+            <span class="tag" role="listitem">Docker</span>
+            <span class="tag" role="listitem">Python</span>
+            <span class="tag" role="listitem">PostgreSQL</span>
+            <span class="tag" role="listitem">CI/CD</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CERTIFICATES ===================== -->
   <section id="projects" aria-label="Projects section">
     <div class="container">
       <div class="section-header reveal">
