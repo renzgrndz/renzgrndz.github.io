@@ -1,100 +1,80 @@
-/* ============================================================
-   PORTFOLIO — main.js
-   Scroll animations, cursor, typing, nav, filter, form
-   ============================================================ */
-
 'use strict';
 
-/* ============================================================
-   UTILITY: Wait for DOM
-   ============================================================ */
 document.addEventListener('DOMContentLoaded', () => {
 
   // ============================================================
-  // 1. SCROLL PROGRESS INDICATOR
+  // 1. THEME TOGGLE (Day / Night)
+  // ============================================================
+  const html         = document.documentElement;
+  const themeToggle  = document.getElementById('theme-toggle');
+  const THEME_KEY    = 'portfolio-theme';
+
+  // Load saved preference, fallback to dark
+  const savedTheme = localStorage.getItem(THEME_KEY) || 'dark';
+  html.setAttribute('data-theme', savedTheme);
+
+  themeToggle.addEventListener('click', () => {
+    const current = html.getAttribute('data-theme');
+    const next    = current === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem(THEME_KEY, next);
+  });
+
+
+  // ============================================================
+  // 2. SCROLL PROGRESS
   // ============================================================
   const scrollProgress = document.getElementById('scroll-progress');
-
-  function updateScrollProgress() {
-    const scrollTop    = window.scrollY;
-    const docHeight    = document.documentElement.scrollHeight - window.innerHeight;
-    const progress     = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-    scrollProgress.style.width = `${progress}%`;
-  }
-
-  window.addEventListener('scroll', updateScrollProgress, { passive: true });
+  window.addEventListener('scroll', () => {
+    const pct = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+    scrollProgress.style.width = `${pct}%`;
+  }, { passive: true });
 
 
   // ============================================================
-  // 2. CUSTOM CURSOR
+  // 3. CUSTOM CURSOR
   // ============================================================
-  const cursor         = document.getElementById('cursor');
-  const cursorFollower = document.getElementById('cursor-follower');
-  let mouseX = 0, mouseY = 0;
-  let followerX = 0, followerY = 0;
-
-  // Only run custom cursor on non-touch devices
   if (window.matchMedia('(hover: hover)').matches) {
+    const cursor   = document.getElementById('cursor');
+    const follower = document.getElementById('cursor-follower');
+    let mx = 0, my = 0, fx = 0, fy = 0;
+
     document.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      cursor.style.left = `${mouseX}px`;
-      cursor.style.top  = `${mouseY}px`;
+      mx = e.clientX; my = e.clientY;
+      cursor.style.left = `${mx}px`; cursor.style.top = `${my}px`;
     });
-
-    // Smooth follower with lerp
-    function animateFollower() {
-      followerX += (mouseX - followerX) * 0.12;
-      followerY += (mouseY - followerY) * 0.12;
-      cursorFollower.style.left = `${followerX}px`;
-      cursorFollower.style.top  = `${followerY}px`;
-      requestAnimationFrame(animateFollower);
-    }
-    animateFollower();
-
-    // Hide cursor when leaving window
-    document.addEventListener('mouseleave', () => {
-      cursor.style.opacity         = '0';
-      cursorFollower.style.opacity = '0';
-    });
-    document.addEventListener('mouseenter', () => {
-      cursor.style.opacity         = '1';
-      cursorFollower.style.opacity = '1';
-    });
+    const animFollower = () => {
+      fx += (mx - fx) * 0.12; fy += (my - fy) * 0.12;
+      follower.style.left = `${fx}px`; follower.style.top = `${fy}px`;
+      requestAnimationFrame(animFollower);
+    };
+    animFollower();
+    document.addEventListener('mouseleave', () => { cursor.style.opacity = '0'; follower.style.opacity = '0'; });
+    document.addEventListener('mouseenter', () => { cursor.style.opacity = '1'; follower.style.opacity = '1'; });
   }
 
 
   // ============================================================
-  // 3. NAVBAR — sticky scroll behaviour
+  // 4. NAVBAR SCROLL
   // ============================================================
   const navbar = document.getElementById('navbar');
-
-  function updateNavbar() {
-    if (window.scrollY > 60) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
-  }
-
+  const updateNavbar = () => navbar.classList.toggle('scrolled', window.scrollY > 60);
   window.addEventListener('scroll', updateNavbar, { passive: true });
-  updateNavbar(); // init
+  updateNavbar();
 
 
   // ============================================================
-  // 4. HAMBURGER MENU (mobile)
+  // 5. HAMBURGER MENU
   // ============================================================
   const hamburger = document.getElementById('hamburger');
   const navLinks  = document.getElementById('nav-links');
 
   hamburger.addEventListener('click', () => {
-    const isOpen = hamburger.classList.toggle('active');
-    navLinks.classList.toggle('open', isOpen);
-    hamburger.setAttribute('aria-expanded', String(isOpen));
-    document.body.style.overflow = isOpen ? 'hidden' : '';
+    const open = hamburger.classList.toggle('active');
+    navLinks.classList.toggle('open', open);
+    hamburger.setAttribute('aria-expanded', String(open));
+    document.body.style.overflow = open ? 'hidden' : '';
   });
-
-  // Close menu when a link is clicked
   navLinks.querySelectorAll('.nav-link').forEach((link) => {
     link.addEventListener('click', () => {
       hamburger.classList.remove('active');
@@ -103,8 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.style.overflow = '';
     });
   });
-
-  // Close menu on resize back to desktop
   window.addEventListener('resize', () => {
     if (window.innerWidth > 768) {
       hamburger.classList.remove('active');
@@ -116,101 +94,49 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ============================================================
-  // 5. TYPING ANIMATION (Hero tagline)
+  // 6. TYPING ANIMATION
   // ============================================================
-  const typedEl    = document.getElementById('typed-text');
-  const phrases    = [
-    'Data Engineer',
-    'Cloud & ETL Developer',
-    'Pipeline Architect',
-    'AWS Specialist',
-    'Databricks Engineer',
-  ];
-  let phraseIndex  = 0;
-  let charIndex    = 0;
-  let isDeleting   = false;
-  let typingTimer  = null;
+  const typedEl  = document.getElementById('typed-text');
+  const phrases  = ['Data Engineer', 'Cloud & ETL Developer', 'Pipeline Architect', 'AWS Specialist', 'Databricks Engineer'];
+  let pi = 0, ci = 0, deleting = false;
 
-  function typeLoop() {
-    const current = phrases[phraseIndex];
-
-    if (isDeleting) {
-      charIndex--;
-      typedEl.textContent = current.slice(0, charIndex);
-    } else {
-      charIndex++;
-      typedEl.textContent = current.slice(0, charIndex);
-    }
-
-    let delay = isDeleting ? 50 : 90;
-
-    if (!isDeleting && charIndex === current.length) {
-      // Pause at end of word
-      delay = 1800;
-      isDeleting = true;
-    } else if (isDeleting && charIndex === 0) {
-      // Move to next phrase
-      isDeleting = false;
-      phraseIndex = (phraseIndex + 1) % phrases.length;
-      delay = 300;
-    }
-
-    typingTimer = setTimeout(typeLoop, delay);
-  }
-
-  // Start typing after hero animations finish
+  const typeLoop = () => {
+    const phrase = phrases[pi];
+    typedEl.textContent = deleting ? phrase.slice(0, --ci) : phrase.slice(0, ++ci);
+    let delay = deleting ? 50 : 90;
+    if (!deleting && ci === phrase.length) { delay = 1800; deleting = true; }
+    else if (deleting && ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; delay = 300; }
+    setTimeout(typeLoop, delay);
+  };
   setTimeout(typeLoop, 1200);
 
 
   // ============================================================
-  // 6. INTERSECTION OBSERVER — Scroll Reveal
+  // 7. SCROLL REVEAL
   // ============================================================
-  const revealEls = document.querySelectorAll('.reveal');
-
-  const revealObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          revealObserver.unobserve(entry.target); // animate once
-        }
-      });
-    },
-    {
-      threshold: 0.12,
-      rootMargin: '0px 0px -40px 0px',
-    }
-  );
-
-  revealEls.forEach((el) => revealObserver.observe(el));
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach((el) => revealObs.observe(el));
 
 
   // ============================================================
-  // 7. PROJECT FILTERING
+  // 8. PROJECT FILTERING
   // ============================================================
   const filterBtns  = document.querySelectorAll('.filter-btn');
   const projectCards = document.querySelectorAll('.project-card');
 
   filterBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
-      // Active state
       filterBtns.forEach((b) => b.classList.remove('active'));
       btn.classList.add('active');
-
-      const filter = btn.dataset.filter;
-
+      const f = btn.dataset.filter;
       projectCards.forEach((card) => {
-        if (filter === 'all' || card.dataset.category === filter) {
-          card.classList.remove('hidden');
-          // Re-trigger animation
+        const show = f === 'all' || card.dataset.category === f;
+        card.classList.toggle('hidden', !show);
+        if (show) {
           card.classList.remove('visible');
-          requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-              card.classList.add('visible');
-            });
-          });
-        } else {
-          card.classList.add('hidden');
+          requestAnimationFrame(() => requestAnimationFrame(() => card.classList.add('visible')));
         }
       });
     });
@@ -218,30 +144,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ============================================================
-  // 8. BACK TO TOP
+  // 9. BACK TO TOP
   // ============================================================
-  const backToTop = document.getElementById('back-to-top');
-
-  window.addEventListener('scroll', () => {
-    backToTop.classList.toggle('visible', window.scrollY > 500);
-  }, { passive: true });
-
-  backToTop.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
+  const btt = document.getElementById('back-to-top');
+  window.addEventListener('scroll', () => btt.classList.toggle('visible', window.scrollY > 500), { passive: true });
+  btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
 
   // ============================================================
-  // 9. FOOTER — Current Year
+  // 10. FOOTER YEAR
   // ============================================================
   const yearEl = document.getElementById('year');
-  if (yearEl) {
-    yearEl.textContent = new Date().getFullYear();
-  }
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
 
 
   // ============================================================
-  // 10. CONTACT FORM — Frontend validation & feedback
+  // 11. CONTACT FORM
   // ============================================================
   const form     = document.getElementById('contact-form');
   const feedback = document.getElementById('form-feedback');
@@ -249,108 +167,181 @@ document.addEventListener('DOMContentLoaded', () => {
   if (form) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-
-      const name    = form.name.value.trim();
-      const email   = form.email.value.trim();
-      const message = form.message.value.trim();
-      const emailRx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-      // Basic validation
-      if (!name) {
-        showFeedback('Please enter your name.', 'error');
-        form.name.focus();
-        return;
-      }
-      if (!email || !emailRx.test(email)) {
-        showFeedback('Please enter a valid email address.', 'error');
-        form.email.focus();
-        return;
-      }
-      if (!message || message.length < 10) {
-        showFeedback('Message must be at least 10 characters.', 'error');
-        form.message.focus();
-        return;
-      }
-
-      // Simulate send (replace with Formspree / Netlify Forms endpoint)
-      const submitBtn = form.querySelector('.form-submit');
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Sending...';
-
+      const name = form.name.value.trim(), email = form.email.value.trim(), message = form.message.value.trim();
+      if (!name) { showFeedback('Please enter your name.', 'error'); return; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showFeedback('Please enter a valid email address.', 'error'); return; }
+      if (message.length < 10) { showFeedback('Message must be at least 10 characters.', 'error'); return; }
+      const btn = form.querySelector('.form-submit');
+      btn.disabled = true; btn.textContent = 'Sending...';
       setTimeout(() => {
-        form.reset();
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = `Send Message <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>`;
-        showFeedback('// Message sent. I\'ll get back to you soon.', 'success');
+        form.reset(); btn.disabled = false;
+        btn.innerHTML = `Send Message <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>`;
+        showFeedback("// Message sent. I'll get back to you soon.", 'success');
       }, 1200);
     });
   }
-
   function showFeedback(msg, type) {
     if (!feedback) return;
     feedback.textContent = msg;
-    feedback.style.color = type === 'success' ? '#aaa' : '#888';
-    setTimeout(() => {
-      feedback.textContent = '';
-    }, 5000);
+    feedback.style.color = type === 'success' ? 'var(--text-muted)' : 'var(--text-dim)';
+    setTimeout(() => { feedback.textContent = ''; }, 5000);
   }
 
 
   // ============================================================
-  // 11. SMOOTH ACTIVE NAV LINK (highlight current section)
+  // 12. ACTIVE NAV LINK
   // ============================================================
   const sections    = document.querySelectorAll('section[id]');
   const allNavLinks = document.querySelectorAll('.nav-link');
-
-  const sectionObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const id = entry.target.id;
-          allNavLinks.forEach((link) => {
-            link.style.color = '';
-            if (link.getAttribute('href') === `#${id}`) {
-              link.style.color = 'var(--white)';
-            }
-          });
-        }
-      });
-    },
-    { threshold: 0.45 }
-  );
-
-  sections.forEach((sec) => sectionObserver.observe(sec));
-
-
-  // ============================================================
-  // 12. SKILL TAG hover — subtle entrance stagger on observe
-  // ============================================================
-  const skillCategories = document.querySelectorAll('.skill-category');
-  const tagObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const tags = entry.target.querySelectorAll('.skill-tag');
-          tags.forEach((tag, i) => {
-            tag.style.transitionDelay = `${i * 0.04}s`;
-            tag.style.opacity = '1';
-            tag.style.transform = 'translateY(0)';
-          });
-          tagObserver.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.2 }
-  );
-
-  skillCategories.forEach((cat) => {
-    const tags = cat.querySelectorAll('.skill-tag');
-    tags.forEach((tag) => {
-      tag.style.opacity = '0';
-      tag.style.transform = 'translateY(8px)';
-      tag.style.transition = 'opacity 0.4s ease, transform 0.4s ease, border-color 0.2s, color 0.2s, background 0.2s';
+  const secObs = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        allNavLinks.forEach((l) => {
+          l.style.color = '';
+          if (l.getAttribute('href') === `#${e.target.id}`) l.style.color = 'var(--text)';
+        });
+      }
     });
-    tagObserver.observe(cat);
+  }, { threshold: 0.45 });
+  sections.forEach((s) => secObs.observe(s));
+
+
+  // ============================================================
+  // 13. SKILL TAG STAGGER
+  // ============================================================
+  const tagObs = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.skill-tag').forEach((t, i) => {
+          t.style.transitionDelay = `${i * 0.04}s`;
+          t.style.opacity = '1'; t.style.transform = 'translateY(0)';
+        });
+        tagObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll('.skill-category').forEach((cat) => {
+    cat.querySelectorAll('.skill-tag').forEach((t) => {
+      t.style.opacity = '0'; t.style.transform = 'translateY(8px)';
+      t.style.transition = 'opacity 0.4s ease, transform 0.4s ease, border-color 0.2s, color 0.2s, background 0.2s';
+    });
+    tagObs.observe(cat);
   });
+
+
+  // ============================================================
+  // 14. CERTIFICATE SLIDER
+  // ============================================================
+  const track    = document.getElementById('cert-track');
+  const viewport = document.getElementById('cert-viewport');
+  const prevBtn  = document.getElementById('cert-prev');
+  const nextBtn  = document.getElementById('cert-next');
+  const dotsWrap = document.getElementById('cert-dots');
+
+  if (!track) return;
+
+  const slides      = Array.from(track.querySelectorAll('.cert-slide'));
+  const totalSlides = slides.length;
+  let current       = 0;
+  let isDragging    = false;
+  let dragStartX    = 0;
+  let dragDeltaX    = 0;
+
+  // How many slides visible at once?
+  const visibleCount = () => {
+    if (window.innerWidth <= 768)  return 1;
+    if (window.innerWidth <= 1024) return 2;
+    return 3;
+  };
+
+  const maxIndex = () => Math.max(0, totalSlides - visibleCount());
+
+  // Build dots
+  function buildDots() {
+    dotsWrap.innerHTML = '';
+    const count = maxIndex() + 1;
+    for (let i = 0; i < count; i++) {
+      const dot = document.createElement('button');
+      dot.className = 'cert-dot' + (i === current ? ' active' : '');
+      dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+      dot.setAttribute('role', 'tab');
+      dot.addEventListener('click', () => goTo(i));
+      dotsWrap.appendChild(dot);
+    }
+  }
+
+  // Update arrow states + dots
+  function updateUI() {
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current >= maxIndex();
+    dotsWrap.querySelectorAll('.cert-dot').forEach((d, i) => d.classList.toggle('active', i === current));
+  }
+
+  // Calculate slide width including gap
+  function slideWidth() {
+    if (slides.length === 0) return 0;
+    const gap = 24; // matches CSS gap
+    return slides[0].getBoundingClientRect().width + gap;
+  }
+
+  function goTo(index) {
+    current = Math.max(0, Math.min(index, maxIndex()));
+    track.style.transform = `translateX(-${current * slideWidth()}px)`;
+    updateUI();
+  }
+
+  prevBtn.addEventListener('click', () => goTo(current - 1));
+  nextBtn.addEventListener('click', () => goTo(current + 1));
+
+  // Keyboard navigation
+  viewport.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') goTo(current - 1);
+    if (e.key === 'ArrowRight') goTo(current + 1);
+  });
+
+  // Touch / mouse drag
+  const startDrag = (x) => { isDragging = true; dragStartX = x; dragDeltaX = 0; track.style.transition = 'none'; };
+  const moveDrag  = (x) => { if (!isDragging) return; dragDeltaX = x - dragStartX; track.style.transform = `translateX(${-current * slideWidth() + dragDeltaX}px)`; };
+  const endDrag   = () => {
+    if (!isDragging) return;
+    isDragging = false;
+    track.style.transition = '';
+    if (dragDeltaX < -60) goTo(current + 1);
+    else if (dragDeltaX > 60) goTo(current - 1);
+    else goTo(current);
+  };
+
+  // Mouse events
+  viewport.addEventListener('mousedown',  (e) => startDrag(e.clientX));
+  window.addEventListener('mousemove',    (e) => moveDrag(e.clientX));
+  window.addEventListener('mouseup',      endDrag);
+
+  // Touch events
+  viewport.addEventListener('touchstart', (e) => startDrag(e.touches[0].clientX), { passive: true });
+  viewport.addEventListener('touchmove',  (e) => moveDrag(e.touches[0].clientX),  { passive: true });
+  viewport.addEventListener('touchend',   endDrag);
+
+  // Auto-advance every 5s
+  let autoTimer = setInterval(() => {
+    if (current >= maxIndex()) goTo(0);
+    else goTo(current + 1);
+  }, 5000);
+
+  // Pause auto on interaction
+  const pauseAuto = () => { clearInterval(autoTimer); autoTimer = setInterval(() => { if (current >= maxIndex()) goTo(0); else goTo(current + 1); }, 5000); };
+  prevBtn.addEventListener('click', pauseAuto);
+  nextBtn.addEventListener('click', pauseAuto);
+  viewport.addEventListener('mousedown', pauseAuto);
+
+  // Rebuild on resize
+  window.addEventListener('resize', () => {
+    buildDots();
+    goTo(Math.min(current, maxIndex()));
+  });
+
+  // Init
+  buildDots();
+  updateUI();
 
 }); // end DOMContentLoaded
