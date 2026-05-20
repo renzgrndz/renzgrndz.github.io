@@ -1287,7 +1287,11 @@ section {
   /* Nav mobile */
   .nav-links {
     position: fixed;
-    inset: 0;
+    top: var(--navbar-height);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: calc(100dvh - var(--navbar-height));
     background: var(--black);
     flex-direction: column;
     align-items: center;
