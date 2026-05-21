@@ -13,7 +13,7 @@
   <meta property="og:image" content="assets/og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <title>Renz Granadozo — Data Engineer</title>
-  <link rel="icon" type="image/x-icon" href="/images/rg-logo.png">
+  <link rel="icon" type="image/x-icon" href="/assets/logo/rg-logo.png">
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -198,7 +198,7 @@
     </div>
   </section>
 
-  <!-- ===================== PROJECTS ===================== -->
+ <!-- ===================== PROJECTS ===================== -->
   <section id="projects" aria-label="Projects section">
     <div class="container">
       <div class="section-header reveal">
@@ -212,61 +212,139 @@
         <button class="filter-btn" data-filter="databricks">Databricks</button>
         <button class="filter-btn" data-filter="snowflake">Snowflake</button>
         <button class="filter-btn" data-filter="orchestration">Orchestration</button>
+        <button class="filter-btn" data-filter="others">Others</button>
       </div>
       <div class="projects-grid" id="projects-grid">
-
-        <article class="project-card reveal" data-category="aws">
-          <div class="project-top">
-            <div class="project-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
-            <div class="project-links">
-              <a href="#" class="icon-link" aria-label="GitHub" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg></a>
-              <a href="#" class="icon-link" aria-label="Live demo" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+ 
+        <!-- ── PROJECT 1 ─────────────────────────────────────────
+             Images: add your own paths inside data-images below.
+             Separate multiple images with commas.
+             e.g. data-images="assets/projects/yt-1.png,assets/projects/yt-2.png"
+        ──────────────────────────────────────────────────────── -->
+        <article class="project-card reveal" data-category="aws glue"
+                 data-images="assets/projects/yt_cover.png,assets/projects/yt_pipeline.png,assets/projects/yt_stepfunction.png">
+          <!-- Project image slideshow (injected by JS) -->
+          <div class="proj-slides" aria-label="Project screenshots"></div>
+ 
+          <div class="project-body">
+            <div class="project-top">
+              <div class="project-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+              <div class="project-links">
+                <a href="#" class="icon-link" aria-label="GitHub" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg></a>
+                <a href="#" class="icon-link" aria-label="Live demo" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+              </div>
+            </div>
+            <h3 class="project-title">YouTube Data Engineering Pipeline</h3>
+            <p class="project-desc">End-to-end AWS data pipeline ingesting YouTube trending data via API, processing with Glue &amp; Lambda, and serving analytics through Athena and QuickSight dashboards.</p>
+            <div class="project-tags">
+              <span class="tag">Python</span>
+              <span class="tag">AWS S3</span>
+              <span class="tag">AWS Glue</span>
+              <span class="tag">AWS Lambda</span>
+              <span class="tag">AWS Athena</span>
+              <span class="tag">AWS Step Functions</span>
+              <span class="tag">AWS SNS</span>
+              <span class="tag">AWS IAM</span>
             </div>
           </div>
-          <h3 class="project-title">YouTube Data Engineering Pipeline</h3>
-          <p class="project-desc">End-to-end AWS data pipeline ingesting YouTube trending data via API, processing with Glue &amp; Lambda, and serving analytics through Athena and QuickSight dashboards.</p>
-          <div class="project-tags"><span class="tag">AWS S3</span><span class="tag">AWS Glue</span><span class="tag">Lambda</span><span class="tag">Athena</span><span class="tag">Python</span></div>
         </article>
-
-        <article class="project-card reveal" data-category="databricks">
-          <div class="project-top">
-            <div class="project-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
-            <div class="project-links">
-              <a href="#" class="icon-link" aria-label="GitHub" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg></a>
-              <a href="#" class="icon-link" aria-label="Live demo" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+ 
+        <!-- ── PROJECT 2 ── -->
+        <article class="project-card reveal" data-category="databricks"
+                 data-images="assets/projects/fmcg_db_cover.png,assets/projects/fmcg_db_pipeline.png">
+          <div class="proj-slides" aria-label="Project screenshots"></div>
+          <div class="project-body">
+            <div class="project-top">
+              <div class="project-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+              <div class="project-links">
+                <a href="#" class="icon-link" aria-label="GitHub" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg></a>
+                <a href="#" class="icon-link" aria-label="Live demo" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+              </div>
+            </div>
+            <h3 class="project-title">Databricks FMCG ETL Pipeline</h3>
+            <p class="project-desc">Medallion architecture (Bronze → Silver → Gold) for FMCG retail data. Built with PySpark on Databricks and Delta Lake for ACID compliance.</p>
+            <div class="project-tags">
+              <span class="tag">Databricks</span>
+              <span class="tag">SQL</span>
+              <span class="tag">PySpark</span>
+              <span class="tag">AWS S3</span>
+              <span class="tag">Delta Lake</span>
+              <span class="tag">Unity Catalog</span>
             </div>
           </div>
-          <h3 class="project-title">Databricks FMCG ETL Pipeline</h3>
-          <p class="project-desc">Medallion architecture (Bronze → Silver → Gold) for FMCG retail data. Built with PySpark on Databricks, Delta Lake for ACID compliance, and dbt for transformations.</p>
-          <div class="project-tags"><span class="tag">Databricks</span><span class="tag">PySpark</span><span class="tag">Delta Lake</span><span class="tag">dbt</span><span class="tag">SQL</span></div>
         </article>
-
-        <article class="project-card reveal" data-category="snowflake">
-          <div class="project-top">
-            <div class="project-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><line x1="12" y1="2" x2="12" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
-            <div class="project-links">
-              <a href="#" class="icon-link" aria-label="GitHub" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg></a>
-              <a href="#" class="icon-link" aria-label="Live demo" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+ 
+        <!-- ── PROJECT 3 ── -->
+        <article class="project-card reveal" data-category="snowflake orchestration"
+                 data-images="assets/projects/banking_cover.png,assets/projects/banking_pipeline.png">
+          <div class="proj-slides" aria-label="Project screenshots"></div>
+          <div class="project-body">
+            <div class="project-top">
+              <div class="project-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><line x1="12" y1="2" x2="12" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+              <div class="project-links">
+                <a href="#" class="icon-link" aria-label="GitHub" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg></a>
+                <a href="#" class="icon-link" aria-label="Live demo" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+              </div>
+            </div>
+            <h3 class="project-title">Snowflake Banking Analytics Platform</h3>
+            <p class="project-desc">Cloud data warehouse solution for banking analytics. Features multi-cluster Snowflake setup, Streams &amp; Tasks for CDC, and role-based access control for compliance.</p>
+            <div class="project-tags">
+              <span class="tag">Snowflake</span>
+              <span class="tag">SQL</span>
+              <span class="tag">Python</span>
+              <span class="tag">Kafka</span>
+              <span class="tag">Airflow</span>
+              <span class="tag">dbt</span>
+              <span class="tag">CDC</span>
+              <span class="tag">AWS S3</span>
+              <span class="tag">CI/CD</span>
             </div>
           </div>
-          <h3 class="project-title">Snowflake Banking Analytics Platform</h3>
-          <p class="project-desc">Cloud data warehouse solution for banking analytics. Features multi-cluster Snowflake setup, Streams &amp; Tasks for CDC, and role-based access control for compliance.</p>
-          <div class="project-tags"><span class="tag">Snowflake</span><span class="tag">SQL</span><span class="tag">Python</span><span class="tag">CDC</span><span class="tag">AWS S3</span></div>
+        </article>
+ 
+        <!-- ── PROJECT 4 ── -->
+        <article class="project-card reveal" data-category="others"
+                 data-images="assets/projects/stride_cover.png">
+          <div class="proj-slides" aria-label="Project screenshots"></div>
+          <div class="project-body">
+            <div class="project-top">
+              <div class="project-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+              <div class="project-links">
+                <a href="#" class="icon-link" aria-label="GitHub" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg></a>
+                <a href="#" class="icon-link" aria-label="Live demo" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+              </div>
+            </div>
+            <h3 class="project-title">Stride: Building Management Software</h3>
+            <p class="project-desc">Simulates how building operational data is organized, monitored, and visualized in real-world facilities.The system allows users to create projects (buildings), define monitoring points, manually input data, visualize trends, and manage alarms.</p>
+            <div class="project-tags"><span class="tag">Flask</span><span class="tag">SQLite</span><span class="tag">HTML/CSS</span><span class="tag">JavaScript</span><span class="tag">IoT</span></div>
+          </div>
         </article>
 
-        <article class="project-card reveal" data-category="orchestration">
-          <div class="project-top">
-            <div class="project-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-            <div class="project-links">
-              <a href="#" class="icon-link" aria-label="GitHub" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg></a>
-              <a href="#" class="icon-link" aria-label="Live demo" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+        <!-- ── PROJECT 5 ── -->
+        <article class="project-card reveal" data-category="others"
+                 data-images="assets/projects/fraudDB_cover.png">
+          <div class="proj-slides" aria-label="Project screenshots"></div>
+          <div class="project-body">
+            <div class="project-top">
+              <div class="project-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+              <div class="project-links">
+                <a href="#" class="icon-link" aria-label="GitHub" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg></a>
+                <a href="#" class="icon-link" aria-label="Live demo" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+              </div>
+            </div>
+            <h3 class="project-title">FraudDB: Fraud Detection System</h3>
+            <p class="project-desc">A comprehensive fraud detection system that analyzes transactional data to identify suspicious patterns and prevent fraudulent activities.</p>
+            <div class="project-tags">
+              <span class="tag">Python</span>
+              <span class="tag">Machine Learning</span>
+              <span class="tag">Pandas</span>
+              <span class="tag">Scikit-Learn</span>
+              <span class="tag">PostgreSQL</span>
+              <span class="tag">Streamlit</span>
             </div>
           </div>
-          <h3 class="project-title">Airflow ETL Orchestration Project</h3>
-          <p class="project-desc">Production-grade DAG orchestration with Apache Airflow on Docker. Custom operators, SLA monitoring, Slack alerting, and multi-environment deployment pipeline.</p>
-          <div class="project-tags"><span class="tag">Airflow</span><span class="tag">Docker</span><span class="tag">Python</span><span class="tag">PostgreSQL</span><span class="tag">CI/CD</span></div>
         </article>
-
+ 
       </div>
     </div>
   </section>
@@ -356,7 +434,7 @@
             <!-- CERT 7 -->
             <div class="cert-slide">
               <div class="cert-img-wrap">
-                <img src="images/DataCamp_DE.png" alt="Data Engineer" loading="lazy" />
+                <img src="assets/certs/DataCamp_DE.png" alt="Data Engineer" loading="lazy" />
               </div>
               <div class="cert-info">
                 <span class="cert-issuer mono">DataCamp</span>
@@ -373,7 +451,7 @@
             <!-- CERT 6 -->
             <div class="cert-slide">
               <div class="cert-img-wrap">
-                <img src="images/DataCamp_AWS.png" alt="AWS Cloud Practitioner (CLF-C02)" loading="lazy" />
+                <img src="assets/certs/DataCamp_AWS.png" alt="AWS Cloud Practitioner (CLF-C02)" loading="lazy" />
               </div>
               <div class="cert-info">
                 <span class="cert-issuer mono">DataCamp</span>
@@ -391,7 +469,7 @@
             <!-- CERT 5 -->
             <div class="cert-slide">
               <div class="cert-img-wrap">
-                <img src="images/CS50 SQL.png" alt="Cybersecurity" loading="lazy" />
+                <img src="assets/certs/CS50 SQL.png" alt="Cybersecurity" loading="lazy" />
               </div>
               <div class="cert-info">
                 <span class="cert-issuer mono">Harvard University - CS50</span>
@@ -408,7 +486,7 @@
             <!-- CERT 4 -->
             <div class="cert-slide">
               <div class="cert-img-wrap">
-                <img src="images/DataCamp_DEA.png" alt="Associate Data Engineer" loading="lazy" />
+                <img src="assets/certs/DataCamp_DEA.png" alt="Associate Data Engineer" loading="lazy" />
               </div>
               <div class="cert-info">
                 <span class="cert-issuer mono">DataCamp</span>
@@ -425,7 +503,7 @@
             <!-- CERT 3 -->
             <div class="cert-slide">
               <div class="cert-img-wrap">
-                <img src="images/CS50 SQL.png" alt="Databases with SQL" loading="lazy" />
+                <img src="assets/certs/CS50 SQL.png" alt="Databases with SQL" loading="lazy" />
               </div>
               <div class="cert-info">
                 <span class="cert-issuer mono">Harvard University - CS50</span>
@@ -442,7 +520,7 @@
             <!-- CERT 2 -->
             <div class="cert-slide">
               <div class="cert-img-wrap">
-                <img src="images/CS50x.png" alt="Computer Science" loading="lazy" />
+                <img src="assets/certs/CS50x.png" alt="Computer Science" loading="lazy" />
               </div>
               <div class="cert-info">
                 <span class="cert-issuer mono">Harvard University - CS50</span>
@@ -459,7 +537,7 @@
             <!-- CERT 1 -->
             <div class="cert-slide">
               <div class="cert-img-wrap">
-                <img src="images/CS50P.png" alt="Programming with Python" loading="lazy" />
+                <img src="assets/certs/CS50P.png" alt="Programming with Python" loading="lazy" />
               </div>
               <div class="cert-info">
                 <span class="cert-issuer mono">Harvard University - CS50</span>
