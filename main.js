@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 6. TYPING ANIMATION
   // ============================================================
   const typedEl = document.getElementById('typed-text');
-  const phrases = ['Data Engineer', 'Cloud & ETL Developer', 'Pipeline Architect', 'AWS Specialist', 'Databricks Engineer'];
+  const phrases = ['Data Engineer', 'Cloud & ETL Developer', 'Electronics Engineer', 'AWS, Snowflakes, Databricks'];
   let pi = 0, ci = 0, deleting = false;
   const typeLoop = () => {
     const phrase = phrases[pi];
